@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGODB_DATABASE="nest"
+    ports:
+      - 27017:27017
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - 1025:1025 # smtp server
+      - 8025:8025 # web ui
