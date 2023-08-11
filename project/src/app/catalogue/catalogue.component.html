@@ -1,0 +1,63 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  </head>
+  <body ng-app="app" ng-controller="myCtrl">
+    <header class="container">
+      <div class="row">
+        <h1 class="col-sm-8">Axle Sports Centre</h1>
+        <nav class="col-sm-4">
+            <button class = "btn btn-primary" (click) = "goToMain()">performance</button>
+          <button class = "btn btn-primary" (click) = "goToCatalogue()">catalogue</button>
+          <button class = "btn btn-primary" (click) = "goToAbout()">About</button>
+          <button class = "btn btn-primary" (click)= "logout()">log out</button>
+        </nav>
+      </div>
+    </header>
+    <section class="jumbotron" ng-class = "{ 'expanded': isExpanded }" ng-init="isExpanded = false">
+      
+        <div class="container">
+          <div class="row text-center">
+            
+            <div style="background-color: rgb(207, 207, 207); width: fit-content; margin: auto; padding: 10px;">
+              <div class = "mat-elevation-z8">
+
+                <mat-table [dataSource]="dataSource" matSort>
+
+                  <!-- Date Column -->
+                 <ng-container matColumnDef="date">
+                   <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                   <mat-cell *matCellDef="let noteItem"> {{ noteItem.date | date }} </mat-cell>
+                 </ng-container>
+
+                 <!-- Note Column -->
+                 <ng-container matColumnDef="note">
+                   <mat-header-cell *matHeaderCellDef mat-sort-header> Note </mat-header-cell>
+                   <mat-cell *matCellDef="let noteItem"> {{ noteItem.note }} </mat-cell>
+                 </ng-container>
+
+                 <ng-container matColumnDef="bmi">
+                   <mat-header-cell *matHeaderCellDef mat-sort-header> BMI </mat-header-cell>
+                   <mat-cell *matCellDef="let noteItem"> {{ noteItem.bmi}} </mat-cell>
+                 </ng-container>
+               
+
+                 <!-- Define the table columns -->
+                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+               </mat-table>
+
+               <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]= 5 showFirstLastButtons></mat-paginator>
+              </div>
+                  
+                
+      
+                </div>
+          </div>
+        </div>
+      
+    </section>
+    
+  </body>
